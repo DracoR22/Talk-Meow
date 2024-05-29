@@ -19,6 +19,16 @@ const config = {
     },
     extend: {
       colors: {
+        cream: '#F5F5F5',
+        gravel: '#4E4E4E',
+        iridium: '#3F3F3F',
+        orange: '#FFA947',
+        peach: '#FFE0BD',
+        platinum: '#E6E6E6',
+        ghost: '#CDCDCD',
+        grandis: '#FFC989',
+        porcelain: '#F1F1F1',
+        ironside: '#636363',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

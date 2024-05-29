@@ -16,7 +16,7 @@ const Layout = async ({ children }: Props) => {
      <div className="w-[600px] ld:w-full flex flex-col items-start p-6">
        <div className="flex items-center">
         <img src="/images/logo.png" alt="logo" width={60} height={60}/>
-        <h3 className="font-semibold text-xl">Talk Meow</h3>
+        <h3 className="font-bold text-2xl text-iridium">Talk Meow</h3>
        </div>
        {children}
      </div>
