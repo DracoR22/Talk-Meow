@@ -44,8 +44,7 @@ export const useSignUpForm = () => {
     }
   }
 
-  const onHandleSubmit = methods.handleSubmit(
-    async (values: UserRegistrationProps) => {
+  const onHandleSubmit = methods.handleSubmit(async (values: UserRegistrationProps) => {
         if (!isLoaded) return
 
         try {
@@ -59,10 +58,12 @@ export const useSignUpForm = () => {
                 return { message: 'Something went wrong!' }
             }
 
-            if (completeSignUp.status === 'complete') {
+            // console.log(values.fullname, signUp.createdUserId, values.type)
+
+            if (completeSignUp.status == 'complete') {
                 if (!signUp.createdUserId) return
 
-                const registered = await onCompleteUserRegistration( values.fullname, signUp.createdUserId, values.type)
+                const registered = await onCompleteUserRegistration(values.fullname, signUp.createdUserId, values.type)
 
                 if (registered?.status === 200 && registered.user) {
                     await setActive({
@@ -74,6 +75,7 @@ export const useSignUpForm = () => {
                 }
 
                 if (registered?.status === 400) {
+                    // console.log(registered.user, registered.status)
                     toast({
                         title: 'Error',
                         description: 'Something went wrong'

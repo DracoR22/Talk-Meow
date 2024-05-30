@@ -1,4 +1,4 @@
-'use client'
+'use server'
 
 import { client } from "@/lib/prisma"
 
@@ -24,6 +24,7 @@ export const onCompleteUserRegistration = async (fullname: string, clerkId: stri
             return { status: 200, user: registered }
         }
     } catch (error) {
+        console.log(error)
          return { status: 400 }
     }
 }
