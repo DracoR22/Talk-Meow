@@ -157,3 +157,14 @@ body {
     width: 100% !important;
     border-radius: 20px;
   }
+
+  /* Change the background color of the selected text to indigo-blue */
+::selection {
+  background-color: rgba(63, 81, 181, 0.5); /* Replace with your desired color and transparency */
+}
+
+/* Change the text color of the selected text */
+::-moz-selection {
+  background-color: rgba(63, 81, 181, 0.5); /* For Firefox */
+  color: #fff; /* Text color for Firefox */
+}
