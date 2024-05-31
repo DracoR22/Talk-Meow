@@ -5,16 +5,19 @@ import { Button } from '../ui/button'
 
 function NavBar() {
   return (
-    <div className="flex gap-5 justify-between items-center px-7 py-1 font-bold border-b border-solid border-zinc-100 leading-[154.5%] max-md:flex-wrap max-md:px-5">
+    <div className='fixed top-0 w-full justify-between bg-white/75 dark:bg-transparent dark:bg-opacity-50  backdrop-blur-xl z-[9999]'>
+      <div className="flex gap-5 justify-between items-center px-7 py-1 font-bold border-b border-solid border-zinc-100 leading-[154.5%] max-md:flex-wrap max-md:px-5">
       <div className="flex gap-1.5 justify-center self-stretch my-auto text-2xl tracking-tighter text-neutral-700">
-        <div className='flex items-center'>
+        <Link href={'/'} className='flex items-center'>
          <img src="/images/logo.png" alt="LOGO" sizes="100vw" style={{ width: '80px', height: 'auto',}} width={0} height={0}/>
          <h3 className="font-bold text-2xl text-iridium">Talk Meow</h3>
-        </div>
+        </Link>
       </div>
       <div className="gap-5 justify-between self-stretch my-auto leading-5 text-neutral-700 max-md:flex-wrap max-md:max-w-full font-normal hidden md:flex">
         <div className='flex items-center gap-5'>
-        <p>Blog</p>
+         <Link href={'/blog'} className='hover:opacity-70'>
+          Blog
+         </Link>
         <p>Pricing</p>
         </div>
 
@@ -32,6 +35,7 @@ function NavBar() {
           </Link>
        </Button>
       </div>
+    </div>
     </div>
   )
 }
