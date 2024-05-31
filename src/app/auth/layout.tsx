@@ -1,4 +1,5 @@
 import { currentUser } from "@clerk/nextjs"
+import Link from "next/link"
 import { redirect } from "next/navigation"
 
 type Props = {
@@ -14,10 +15,10 @@ const Layout = async ({ children }: Props) => {
   return (
     <div className="h-screen flex w-full justify-center">
      <div className="w-[600px] ld:w-full flex flex-col items-start p-6">
-       <div className="flex items-center">
+       <Link href={'/'} className="flex items-center">
         <img src="/images/logo.png" alt="logo" width={60} height={60}/>
         <h3 className="font-bold text-2xl text-iridium">Talk Meow</h3>
-       </div>
+       </Link>
        {children}
      </div>
      <div className="hidden lg:flex flex-1 w-full max-h-full max-w-[4000px] overflow-hidden relative bg-cream flex-col pt-10 pl-24 gap-3">

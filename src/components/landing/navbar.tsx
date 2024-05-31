@@ -1,9 +1,12 @@
-import Image from 'next/image'
+'use client'
+
 import * as React from 'react'
 import Link from 'next/link'
 import { Button } from '../ui/button'
+import { SignedIn, SignedOut, useUser } from '@clerk/nextjs'
 
 function NavBar() {
+
   return (
     <div className='fixed top-0 w-full justify-between bg-white/75 dark:bg-transparent dark:bg-opacity-50  backdrop-blur-xl z-[9999]'>
       <div className="flex gap-5 justify-between items-center px-7 py-1 font-bold border-b border-solid border-zinc-100 leading-[154.5%] max-md:flex-wrap max-md:px-5">
@@ -23,17 +26,27 @@ function NavBar() {
 
         <div className='border-r '/>
 
-       <Button asChild>
+       <SignedOut>
+        <Button asChild>
          <Link href={'/auth/sign-up'}>
-           Get Started for Free
+            Get Started for Free
          </Link>
-       </Button>
+        </Button>
 
-       <Button asChild variant={'outline'}>
+         <Button asChild variant={'outline'}>
           <Link href={'/auth/sign-in'}>
              Login
           </Link>
-       </Button>
+         </Button>
+       </SignedOut>
+
+       <SignedIn>
+       <Button asChild variant={'outline'}>
+          <Link href={'/dashboard'}>
+             Dashboard
+          </Link>
+         </Button>
+       </SignedIn>
       </div>
     </div>
     </div>
