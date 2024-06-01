@@ -5,6 +5,8 @@ const DashboardLayout = async ({ children }: PropsWithChildren) => {
 
     const authenticated = await onLoginUser()
 
+    if (!authenticated) return null
+
   return (
     <div>
       
