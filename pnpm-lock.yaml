@@ -98,6 +98,12 @@ dependencies:
   '@radix-ui/react-tooltip':
     specifier: ^1.0.7
     version: 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
+  '@uploadcare/react-uploader':
+    specifier: ^0.5.2
+    version: 0.5.2(@types/react@18.3.3)
+  '@uploadcare/upload-client':
+    specifier: ^6.14.1
+    version: 6.14.1
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -1845,6 +1851,10 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@symbiotejs/symbiote@1.11.7:
+    resolution: {integrity: sha512-fUOJwzuldeApJ533YeTdrfnpp4nsA+ss1eiNBodX7RHf4LnhPB2Z9HP4fF3m2YhKYnxK0whjXaKA+wrxTRP5qA==}
+    dev: false
+
   /@types/body-parser@1.19.5:
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
     dependencies:
@@ -2021,6 +2031,53 @@ packages:
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
+
+  /@uploadcare/blocks@0.39.1:
+    resolution: {integrity: sha512-WdjlUYCeuaju83ImELIVsrLlZpi6IIWidnh+/LfIiX8ht1KJGH9DgK7ekoUyWxjE8ggwnPNIz4xnMKmIGlow7w==}
+    dependencies:
+      '@symbiotejs/symbiote': 1.11.7
+      '@uploadcare/image-shrink': 6.14.1
+      '@uploadcare/upload-client': 6.14.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
+  /@uploadcare/image-shrink@6.14.1:
+    resolution: {integrity: sha512-r3uu+9xsgqNqL5hvBya7RDDQVPMpTF12C1MRN80O1H6ITVvWLfngtmUbP44qg7YhAraLoynDJlkmHMiHanCw0w==}
+    dev: false
+
+  /@uploadcare/react-adapter@0.3.0(@types/react@18.3.3):
+    resolution: {integrity: sha512-XQLPAERn47XC9srFH3HeQpywyInSaJ6JFDKD5XNvaSL5y2KF3MZerwMHsc/brAOLDQox7lLjzPXzrwlWlcMVqw==}
+    peerDependencies:
+      '@types/react': 17 || 18
+    dependencies:
+      '@types/react': 18.3.3
+    dev: false
+
+  /@uploadcare/react-uploader@0.5.2(@types/react@18.3.3):
+    resolution: {integrity: sha512-omldimzBv754PzFzPHh/FjWmV9kXgMi5wa5R67qkAdDSUBzdFYWJbJrePpA8R6or27n+B2wnQmqRmJWL0gPRsQ==}
+    peerDependencies:
+      '@types/react': 17 || 18
+    dependencies:
+      '@types/react': 18.3.3
+      '@uploadcare/blocks': 0.39.1
+      '@uploadcare/react-adapter': 0.3.0(@types/react@18.3.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
+  /@uploadcare/upload-client@6.14.1:
+    resolution: {integrity: sha512-GvXLq6GGyXHjq7tebfv3IqHFpMzuOSuNPOhwCcNPquUbwoAlTEFPLjB2Ir/EZUuCtTWowluLjo4LPDQwvHbqyA==}
+    engines: {node: '>=16'}
+    dependencies:
+      form-data: 4.0.0
+      ws: 8.17.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
 
   /acorn-jsx@5.3.2(acorn@8.11.3):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -3083,6 +3140,15 @@ packages:
 
   /form-data@3.0.1:
     resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
+    dev: false
+
+  /form-data@4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
@@ -4931,6 +4997,19 @@ packages:
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
+
+  /ws@8.17.0:
+    resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
 
   /yaml@2.4.2:
     resolution: {integrity: sha512-B3VqDZ+JAg1nZpaEmWtTXUlBneoGx6CPM9b0TENK6aoSu5t73dItudwdgmi6tHlIZZId4dZ9skcAQ2UbcyAeVA==}
