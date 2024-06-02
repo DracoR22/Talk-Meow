@@ -10,7 +10,7 @@ const InfoBar = () => {
       <BreadCrumb/>
       <div className='flex gap-3 items-center'>
         <div>
-            <Card className='rounded-xl flex gap-3 py-3 px-4 text-ghost'>
+            <Card className='rounded-xl flex gap-3 py-3 px-4 text-ghost dark:bg-neutral-800 dark:border-neutral-700'>
               <TrashIcon/>
               <StarIcon/>
             </Card>

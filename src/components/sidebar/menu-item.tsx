@@ -16,7 +16,7 @@ const MenuItem = ({ icon, label, size, current, onSignOut, path }: Props) => {
        case 'max':
          return (
             <Link href={path ? `/${path}` : '#'} onClick={onSignOut} className={cn('flex items-center gap-2 px-1 py-2 rounded-lg my-1',
-                !current ? 'text-gray-500 hover:bg-white' : current === path ? 'bg-white font-bold text-black' : 'text-gray-500 hover:bg-white'
+                !current ? 'text-gray-500 dark:text-neutral-300 hover:bg-white dark:hover:bg-neutral-700' : current === path ? 'bg-white font-bold text-black' : 'text-gray-500 hover:bg-white dark:text-neutral-300 dark:hover:bg-neutral-700'
             )}>
                {icon} {label}
             </Link>
@@ -24,7 +24,7 @@ const MenuItem = ({ icon, label, size, current, onSignOut, path }: Props) => {
         
        case 'min':
          return (
-            <Link href={path ? `/${path}` : '#'} onClick={onSignOut} className={cn(!current ? 'text-gray-500 hover:bg-white' : current === path ? 'bg-white font-bold text-black' : 'text-gray-500 hover:bg-white', 'rounded-lg py-2 my-1'
+            <Link href={path ? `/${path}` : '#'} onClick={onSignOut} className={cn(!current ? 'text-gray-500 dark:text-neutral-300 hover:bg-white dark:hover:bg-neutral-700' : current === path ? 'bg-white font-bold text-black' : 'text-gray-500 hover:bg-white dark:text-neutral-300 dark:hover:bg-neutral-700', 'rounded-lg py-2 my-1'
             )}>
                 {icon}
             </Link>

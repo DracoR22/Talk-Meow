@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 
 const useSideBar = () => {
 
-    const [expand, setExpand] = useState<boolean | undefined>(undefined)
+    const [expand, setExpand] = useState<boolean | undefined>(true)
     const [realtime, setRealtime] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
 

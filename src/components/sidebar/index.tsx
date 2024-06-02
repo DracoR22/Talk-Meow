@@ -18,7 +18,7 @@ const SideBar = ({ domains }: Props) => {
     const { expand, onExpand, page, onSignOut } = useSideBar()
 
   return (
-    <div className={cn('bg-cream h-full w-[60px] fill-mode-forwards fixed md:relative',
+    <div className={cn('bg-cream dark:bg-neutral-800 h-full w-[60px] fill-mode-forwards fixed md:relative',
         expand === undefined && '',
         expand === true ? 'animate-open-sidebar' : expand === false && 'animate-close-sidebar'
     )}>
