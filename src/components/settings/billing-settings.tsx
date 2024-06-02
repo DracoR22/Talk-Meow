@@ -24,6 +24,11 @@ const BillingSettings = async () => {
            </CardContent>
          </Card>
       </div>
+      <div className="lg:col-span-2">
+        <h3 className="text-xl font-semibold mb-2">Current Plan</h3>
+        <p className="text-sm font-semibold">{plan}</p>
+        
+      </div>
     </div>
   )
 }

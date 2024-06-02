@@ -1,7 +1,10 @@
+'use client'
+
 import NavBar from '@/components/landing/navbar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { pricingCards } from '@/constants/landing-page'
+import { useThemeMode } from '@/hooks/settings/use-settings'
 import StarIcon from '@/icons/star-icon'
 import { cn } from '@/lib/utils'
 import { UserButton } from '@clerk/nextjs'
@@ -10,6 +13,8 @@ import Link from 'next/link'
 import React from 'react'
 
 const HomePage = () => {
+
+  const { theme } = useThemeMode()
   return (
     <main>
        <NavBar/>
@@ -18,7 +23,7 @@ const HomePage = () => {
              The #1 AI Chatbot for Customer Support
           </span>
           <h1 className='text-5xl font-extrabold leading-normal'>
-            Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon/> AI</span>
+            Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon color={theme === 'light' ? 'white' : 'black'}/> AI</span>
           </h1>
           <p className='font-medium text-muted-foreground text-center text-lg mt-2'>
             Build an AI chatbot to take care of 85% of your customer questions automatically. <br /> 
