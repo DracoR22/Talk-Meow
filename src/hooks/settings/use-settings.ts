@@ -3,6 +3,7 @@
 import { onUpdatePassword } from "@/actions/settings"
 import { useToast } from "@/components/ui/use-toast"
 import { ChangePasswordProps, ChangePasswordSchema } from "@/schemas/auth-schema"
+import { DomainSettingsProps, DomainSettingsSchema } from "@/schemas/settings-shema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTheme } from "next-themes"
 import { useState } from "react"
@@ -44,4 +45,10 @@ export const useChangePassword = () => {
   })
 
   return  { register, errors, onChangePassword, loading }
+}
+
+export const useSettings = () => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<DomainSettingsProps>({
+    resolver: zodResolver(DomainSettingsSchema)
+  })
 }
