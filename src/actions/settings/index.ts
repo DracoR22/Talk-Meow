@@ -391,3 +391,67 @@ export const onGetAllHelpDeskQuestions = async (id: string) => {
     console.log(error)
   }
 }
+
+export const onCreateFilterQuestions = async (id: string, question: string) => {
+  try {
+    const filterQuestion = await client.domain.update({
+      where: {
+        id,
+      },
+      data: {
+        filterQuestions: {
+          create: {
+            question,
+          },
+        },
+      },
+      include: {
+        filterQuestions: {
+          select: {
+            id: true,
+            question: true,
+          },
+        },
+      },
+    })
+
+    if (filterQuestion) {
+      return {
+        status: 200,
+        message: 'Filter question added',
+        questions: filterQuestion.filterQuestions,
+      }
+    }
+    return {
+      status: 400,
+      message: 'Oops! something went wrong',
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const onGetAllFilterQuestions = async (id: string) => {
+  try {
+    const questions = await client.filterQuestions.findMany({
+      where: {
+        domainId: id,
+      },
+      select: {
+        question: true,
+        id: true,
+      },
+      orderBy: {
+        question: 'asc',
+      },
+    })
+
+    return {
+      status: 200,
+      message: '',
+      questions: questions,
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}

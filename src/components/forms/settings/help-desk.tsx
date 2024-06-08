@@ -1,10 +1,12 @@
 'use client'
 
 import Section from "@/components/section-label"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
 import { useHelpDesk } from "@/hooks/settings/use-settings"
 import FormGenerator from "../form-generator"
 import { Button } from "@/components/ui/button"
+import { Loader } from "@/components/loader"
+import Accordion from "@/components/accordion"
 
 type Props = {
     id: string
@@ -34,6 +36,21 @@ const HelpDesk = ({ id }: Props) => {
              </Button>
            </form>
         </CardContent>
+        <CardContent className="p-6 overflow-y-auto chat-window">
+        <Loader loading={loading}>
+          {isQuestions.length ? (
+            isQuestions.map((question) => (
+              <Accordion
+                key={question.id}
+                trigger={question.question}
+                content={question.answer}
+              />
+            ))
+          ) : (
+            <CardDescription>No Questions to show</CardDescription>
+          )}
+        </Loader>
+      </CardContent>
     </Card>
   )
 }

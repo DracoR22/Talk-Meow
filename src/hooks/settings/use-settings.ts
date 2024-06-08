@@ -1,10 +1,10 @@
 'use client'
 
-import { onChatBotImageUpdate, onCreateHelpDeskQuestion, onDeleteUserDomain, onGetAllHelpDeskQuestions, onUpdateDomain, onUpdatePassword, onUpdateWelcomeMessage } from "@/actions/settings"
+import { onChatBotImageUpdate, onCreateFilterQuestions, onCreateHelpDeskQuestion, onDeleteUserDomain, onGetAllFilterQuestions, onGetAllHelpDeskQuestions, onUpdateDomain, onUpdatePassword, onUpdateWelcomeMessage } from "@/actions/settings"
 import { useToast } from "@/components/ui/use-toast"
 import { upload } from "@/lib/upload-care"
 import { ChangePasswordProps, ChangePasswordSchema } from "@/schemas/auth-schema"
-import { DomainSettingsProps, DomainSettingsSchema, HelpDeskQuestionsProps, HelpDeskQuestionsSchema } from "@/schemas/settings-shema"
+import { AddProductProps, AddProductSchema, DomainSettingsProps, DomainSettingsSchema, FilterQuestionsProps, FilterQuestionsSchema, HelpDeskQuestionsProps, HelpDeskQuestionsSchema } from "@/schemas/settings-shema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
@@ -124,27 +124,34 @@ export const useSettings = (id: string) => {
   return { register, onUpdateSettings, errors, loading, onDeleteDomain, deleting }
 }
 
+
 export const useHelpDesk = (id: string) => {
-
-  const [loading, setLoading] = useState<boolean>(false)
-  const [isQuestions, setIsQuestions] = useState<{ id: string; question: string; answer: string }[]>([])
-
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<HelpDeskQuestionsProps>({
+    resolver: zodResolver(HelpDeskQuestionsSchema),
+  })
   const { toast } = useToast()
 
-  const { register, formState: { errors }, handleSubmit, reset } = useForm<HelpDeskQuestionsProps>({
-    resolver: zodResolver(HelpDeskQuestionsSchema)
-  })
-
+  const [loading, setLoading] = useState<boolean>(false)
+  const [isQuestions, setIsQuestions] = useState<
+    { id: string; question: string; answer: string }[]
+  >([])
   const onSubmitQuestion = handleSubmit(async (values) => {
     setLoading(true)
-
-    const question = await onCreateHelpDeskQuestion(id, values.question, values.answer)
-
+    const question = await onCreateHelpDeskQuestion(
+      id,
+      values.question,
+      values.answer
+    )
     if (question) {
       setIsQuestions(question.questions!)
       toast({
-        title: question.status === 200 ? 'Success' : 'Error',
-        description: question.message
+        title: question.status == 200 ? 'Success' : 'Error',
+        description: question.message,
       })
       setLoading(false)
       reset()
@@ -154,8 +161,8 @@ export const useHelpDesk = (id: string) => {
   const onGetQuestions = async () => {
     setLoading(true)
     const questions = await onGetAllHelpDeskQuestions(id)
-
     if (questions) {
+      setIsQuestions(questions.questions)
       setLoading(false)
     }
   }
@@ -164,5 +171,98 @@ export const useHelpDesk = (id: string) => {
     onGetQuestions()
   }, [])
 
-  return { register, onSubmitQuestion, errors, isQuestions, loading }
+  return {
+    register,
+    onSubmitQuestion,
+    errors,
+    isQuestions,
+    loading,
+  }
+}
+
+export const useFilterQuestions = (id: string) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FilterQuestionsProps>({
+    resolver: zodResolver(FilterQuestionsSchema),
+  })
+  const { toast } = useToast()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [isQuestions, setIsQuestions] = useState<{ id: string; question: string }[]>([])
+
+  const onAddFilterQuestions = handleSubmit(async (values) => {
+    setLoading(true)
+    const questions = await onCreateFilterQuestions(id, values.question)
+    if (questions) {
+      setIsQuestions(questions.questions!)
+      toast({
+        title: questions.status == 200 ? 'Success' : 'Error',
+        description: questions.message,
+      })
+      reset()
+      setLoading(false)
+    }
+  })
+
+  const onGetQuestions = async () => {
+    setLoading(true)
+    const questions = await onGetAllFilterQuestions(id)
+    if (questions) {
+      setIsQuestions(questions.questions)
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    onGetQuestions()
+  }, [])
+
+  return {
+    loading,
+    onAddFilterQuestions,
+    register,
+    errors,
+    isQuestions,
+  }
+}
+
+export const useProducts = (domainId: string) => {
+  const { toast } = useToast()
+  const [loading, setLoading] = useState<boolean>(false)
+  const {
+    register,
+    reset,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<AddProductProps>({
+    resolver: zodResolver(AddProductSchema),
+  })
+
+  // const onCreateNewProduct = handleSubmit(async (values) => {
+  //   try {
+  //     setLoading(true)
+  //     const uploaded = await upload.uploadFile(values.image[0])
+  //     const product = await onCreateNewDomainProduct(
+  //       domainId,
+  //       values.name,
+  //       uploaded.uuid,
+  //       values.price
+  //     )
+  //     if (product) {
+  //       reset()
+  //       toast({
+  //         title: 'Success',
+  //         description: product.message,
+  //       })
+  //       setLoading(false)
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // })
+
+  return { register, errors, loading }
 }

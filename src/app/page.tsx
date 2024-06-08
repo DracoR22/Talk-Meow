@@ -23,7 +23,10 @@ const HomePage = () => {
              The #1 AI Chatbot for Customer Support
           </span>
           <h1 className='text-5xl font-extrabold leading-normal'>
-            Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon color={theme === 'light' ? 'white' : 'black'}/> AI</span>
+            Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon color={'white'}/> AI</span>
+          </h1>
+          <h1 className='text-5xl font-extrabold leading-normal hidden dark:flex'>
+            Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon color={'black'}/> AI</span>
           </h1>
           <p className='font-medium text-muted-foreground text-center text-lg mt-2'>
             Build an AI chatbot to take care of 85% of your customer questions automatically. <br /> 
