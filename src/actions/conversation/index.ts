@@ -176,6 +176,7 @@ export const onOwnerSendMessage = async (chatRoom: string, message: string, role
 }
 
 export const onRealTimeChat = async (chatRoomId: string, message: string, id: string, role: 'assistant' | 'user') => {
+    //@ts-expect-error
   pusherServer.trigger(chatRoomId, 'realtime-mode', {
     chat: {
         message,
@@ -184,3 +185,4 @@ export const onRealTimeChat = async (chatRoomId: string, message: string, id: st
     }
   })
 }
+
