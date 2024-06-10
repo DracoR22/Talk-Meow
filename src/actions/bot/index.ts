@@ -4,6 +4,7 @@ import { client } from "@/lib/prisma"
 import { extractEmailsFromString } from "@/lib/utils"
 import { onRealTimeChat } from "../conversation"
 import { clerkClient } from "@clerk/nextjs"
+import { onMailer } from "../mailer/index."
 
 export const onStoreConversations = async (id: string, message: string, role: 'assistant' | 'user') => {
     await client.chatRoom.update({
@@ -174,8 +175,16 @@ export const onAiChatBotAssistant = async (id: string, chat: { role: 'assistant'
                             }
                           }
                 }
+
+                return {
+                    live: true,
+                    chatRoom: checkCustomer.customer[0].chatRoom[0].id
+                }
             }
+
+            await onStoreConversations(checkCustomer?.customer[0].chatRoom[0].id!, message, author)
         }
+    }
     } catch (error) {
         console.log(error)
     }
