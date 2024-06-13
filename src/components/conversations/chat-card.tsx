@@ -3,7 +3,7 @@
 import { useChatTime } from "@/hooks/conversation/use-conversation"
 import { Card, CardContent, CardDescription } from "../ui/card"
 import { Avatar, AvatarFallback } from "../ui/avatar"
-import { User } from "lucide-react"
+import { Divide, User } from "lucide-react"
 import { UrgentIcon } from "@/icons/urgent-icon"
 
 type Props = {
@@ -36,7 +36,7 @@ const ChatCard = ({ createdAt, id, onChat, title, description, seen }: Props) =>
                    <CardDescription className="font-bold leading-none text-gray-600">
                       {title}
                    </CardDescription>
-                   {urgent && !seen && <UrgentIcon/>}
+                   {urgent && !seen && <div className="bg-green-400 p-2 rounded-full"/>}
                 </div>
                 <CardDescription>
                     {description ? description.substring(0, 20) + '...' : 'This chatroom is empty'}

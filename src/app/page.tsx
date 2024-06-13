@@ -22,10 +22,10 @@ const HomePage = () => {
           <span className='text-green-500 border border-green-500 bg-green-500/20 px-4 py-2 rounded-full text-sm'>
              The #1 AI Chatbot for Customer Support
           </span>
-          <h1 className='text-5xl font-extrabold leading-normal'>
+          <h1 className='text-5xl font-extrabold leading-normal dark:hidden'>
             Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon color={'white'}/> AI</span>
           </h1>
-          <h1 className='text-5xl font-extrabold leading-normal hidden dark:flex'>
+          <h1 className='text-5xl font-extrabold leading-normal hidden dark:block'>
             Automate Your Customer <br /> Support Work With <span className='bg-primary text-white dark:text-black p-2 rounded-2xl'><StarIcon color={'black'}/> AI</span>
           </h1>
           <p className='font-medium text-muted-foreground text-center text-lg mt-2'>
