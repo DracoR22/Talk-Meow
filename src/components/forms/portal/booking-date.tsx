@@ -65,7 +65,7 @@ type Props = {
                 <Card
                   onClick={() => onSlot(slot.slot)}
                   className={cn(
-                    currentSlot == slot.slot ? 'bg-grandis' : 'bg-peach',
+                    currentSlot == slot.slot ? 'bg-green-500' : 'bg-peach',
                     'px-10 py-4',
                     bookings &&
                       bookings.some(
@@ -75,7 +75,7 @@ type Props = {
                           booking.slot == slot.slot
                       )
                       ? 'bg-gray-300'
-                      : 'cursor-pointer border-orange hover:bg-grandis transition duration-150 ease-in-out'
+                      : 'cursor-pointer border-green-500 hover:bg-grandis transition duration-150 ease-in-out'
                   )}
                 >
                   <Input

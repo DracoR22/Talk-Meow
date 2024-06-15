@@ -1,6 +1,6 @@
 'use client'
 
-import { onChatBotImageUpdate, onCreateFilterQuestions, onCreateHelpDeskQuestion, onDeleteUserDomain, onGetAllFilterQuestions, onGetAllHelpDeskQuestions, onUpdateDomain, onUpdatePassword, onUpdateWelcomeMessage } from "@/actions/settings"
+import { onChatBotImageUpdate, onCreateFilterQuestions, onCreateHelpDeskQuestion, onCreateNewDomainProduct, onDeleteUserDomain, onGetAllFilterQuestions, onGetAllHelpDeskQuestions, onUpdateDomain, onUpdatePassword, onUpdateWelcomeMessage } from "@/actions/settings"
 import { useToast } from "@/components/ui/use-toast"
 import { upload } from "@/lib/upload-care"
 import { ChangePasswordProps, ChangePasswordSchema } from "@/schemas/auth-schema"
@@ -241,28 +241,28 @@ export const useProducts = (domainId: string) => {
     resolver: zodResolver(AddProductSchema),
   })
 
-  // const onCreateNewProduct = handleSubmit(async (values) => {
-  //   try {
-  //     setLoading(true)
-  //     const uploaded = await upload.uploadFile(values.image[0])
-  //     const product = await onCreateNewDomainProduct(
-  //       domainId,
-  //       values.name,
-  //       uploaded.uuid,
-  //       values.price
-  //     )
-  //     if (product) {
-  //       reset()
-  //       toast({
-  //         title: 'Success',
-  //         description: product.message,
-  //       })
-  //       setLoading(false)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // })
+  const onCreateNewProduct = handleSubmit(async (values) => {
+    try {
+      setLoading(true)
+      const uploaded = await upload.uploadFile(values.image[0])
+      const product = await onCreateNewDomainProduct(
+        domainId,
+        values.name,
+        uploaded.uuid,
+        values.price
+      )
+      if (product) {
+        reset()
+        toast({
+          title: 'Success',
+          description: product.message,
+        })
+        setLoading(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  })
 
-  return { register, errors, loading }
+  return { register, errors, loading, onCreateNewProduct }
 }

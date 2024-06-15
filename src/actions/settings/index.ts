@@ -455,3 +455,58 @@ export const onGetAllFilterQuestions = async (id: string) => {
     console.log(error)
   }
 }
+
+export const onGetPaymentConnected = async () => {
+  try {
+    const user = await currentUser()
+    if (user) {
+      const connected = await client.user.findUnique({
+        where: {
+          clerkId: user.id,
+        },
+        select: {
+          stripeId: true,
+        },
+      })
+      if (connected) {
+        return connected.stripeId
+      }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+export const onCreateNewDomainProduct = async (
+  id: string,
+  name: string,
+  image: string,
+  price: string
+) => {
+  try {
+    const product = await client.domain.update({
+      where: {
+        id,
+      },
+      data: {
+        products: {
+          create: {
+            name,
+            image,
+            price: parseInt(price),
+          },
+        },
+      },
+    })
+
+    if (product) {
+      return {
+        status: 200,
+        message: 'Product successfully created',
+      }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
