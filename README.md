@@ -1,6 +1,6 @@
 <div>
   <img src="/public/talkmeow.png">
-  <h1 align="center">Talk Meow 🦄</h1>
+  <h1 align="center">Talk Meow 🐱</h1>
 </div>
 
 <p align="center">
