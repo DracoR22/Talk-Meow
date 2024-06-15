@@ -6,6 +6,7 @@ import { useStripeCustomer } from '@/hooks/billing/use-billing'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import Image from 'next/image'
+import { CustomerPaymentForm } from './customer-payment-form'
 
 type Props = {
     onBack(): void
