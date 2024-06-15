@@ -1,25 +1,27 @@
+import { useRealTime } from "@/hooks/chatbot/use-chatbot"
 import { Card } from "../ui/card"
 
 type Props = {
-    chatRoomId: string
-    setChats: React.Dispatch<
-      React.SetStateAction<
-        {
-          role: 'user' | 'assistant'
-          content: string
-          link?: string | undefined
-        }[]
-      >
+  chatRoomId: string
+  setChats: React.Dispatch<
+    React.SetStateAction<
+      {
+        role: 'user' | 'assistant'
+        content: string
+        link?: string | undefined
+      }[]
     >
-  }
+  >
+}
 
-const RealTime = ({ chatRoomId, setChats }: Props) => {
+const RealTimeMode = ({ chatRoomId, setChats }: Props) => {
+ useRealTime(chatRoomId, setChats)
 
   return (
-    <Card className="px-3 rounded-full py-1 bg-green-500 font-bold text-white text-sm">
-        Real Time
+    <Card className="px-3 rounded-full py-1 bg-orange font-bold text-white text-sm">
+      Real Time
     </Card>
   )
 }
 
-export default RealTime
+export default RealTimeMode
